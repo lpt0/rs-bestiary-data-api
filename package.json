@@ -2,9 +2,11 @@
   "name": "@lpt0/rs-bestiary-data-api",
   "version": "0.0.1",
   "description": "Proxies and caches requests to the RuneScape Bestiary API",
-  "main": "index.js",
+  "main": "build/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build && node build/server.js",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -13,8 +15,9 @@
   "author": "Haran <haran@nxdomain.ca>",
   "license": "UNLICENSED",
   "dependencies": {
-    "@lpt0/rs-bestiary-api-wrapper": "1.0.0",
-    "express": "^4.17.1"
+    "@lpt0/rs-bestiary-api-wrapper": "1.0.1",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

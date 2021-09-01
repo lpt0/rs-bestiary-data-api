@@ -1,5 +1,6 @@
 //#region Imports
 import express from "express";
+import mongoose from "mongoose";
 //#endregion
 
 //#region Router imports
@@ -12,6 +13,7 @@ import WeaknessRouter from "./routes/weakness";
 //#region Setup
 const server = express();
 const PORT = process.env["PORT"] || 8080;
+mongoose.connect(process.env["MONGO_URI"] || "mongodb://localhost:27017/rs-bestiary");
 //#endregion
 
 //#region Route declarations
@@ -28,4 +30,6 @@ server.use("/api/slayer", SlayerRouter);
 server.use("/api/weaknesses", WeaknessRouter);
 //#endregion
 
-server.listen(process.env["PORT"] || 8080, () => console.log(`Listening on port ${PORT}`));
+server.listen(process.env["PORT"] || 8080, () => {
+  console.log(`Listening on port ${PORT}`)
+});
