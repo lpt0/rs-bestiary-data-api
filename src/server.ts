@@ -13,7 +13,20 @@ import WeaknessRouter from "./routes/weakness";
 //#region Setup
 const server = express();
 const PORT = process.env["PORT"] || 8080;
-mongoose.connect(process.env["MONGO_URI"] || "mongodb://localhost:27017/rs-bestiary");
+
+mongoose.connect(process.env["MONGO_URI"] || "mongodb://localhost:27017/bestiary")
+  .then(({ connection: { host, port, db } }) => 
+    console.log(`Connected to ${host}:${port}/${db.databaseName}`)
+  );
+
+// CORS middleware
+server.use((req, res, next) => {
+  // Normally, the CORS headers would be more restrictive.
+  // However, as this is not a private API, and is only for learning purposes,
+  // allowing everything is fine.
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  next();
+});
 //#endregion
 
 //#region Route declarations
