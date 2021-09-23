@@ -7,7 +7,7 @@ const BeastRouter = Router();
 /** Get IDs of all cached monsters */
 BeastRouter.get("/", async (req, res) => {
   try {
-    const beastIds = await Beast.find({}, { _id: 0, id: 1 });
+    const beastIds = await Beast.find({}, { _id: 0, id: 1, name: 1 });
     res.send(beastIds);
   } catch (e) {
     res.status(500).send({ message: e || "Unknown error" });
